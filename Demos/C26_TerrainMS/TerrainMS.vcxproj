@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.Direct3D.D3D12.1.614.1\build\native\Microsoft.Direct3D.D3D12.props" Condition="Exists('packages\Microsoft.Direct3D.D3D12.1.614.1\build\native\Microsoft.Direct3D.D3D12.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BE228814-A8FE-45F3-91A8-5F73AD61AB02}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>TerrainMS</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\bin\</OutDir>
+    <TargetName>$(ProjectName)_debug64</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\bin\</OutDir>
+    <TargetName>$(ProjectName)_release64</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\External\DirectXTK12\Src\Shaders\Compiled;$(ProjectDir)..\..\External\DirectXTK12\inc;$(ProjectDir)..\..\External\;$(ProjectDir)..\..\External\imgui</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\External\dxc\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\External\DirectXTK12\Src\Shaders\Compiled;$(ProjectDir)..\..\External\DirectXTK12\inc;$(ProjectDir)..\..\External\;$(ProjectDir)..\..\External\imgui</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\External\dxc\lib\x64</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Common\Camera.cpp" />
+    <ClCompile Include="..\..\Common\d3dApp.cpp" />
+    <ClCompile Include="..\..\Common\d3dUtil.cpp" />
+    <ClCompile Include="..\..\Common\GameTimer.cpp" />
+    <ClCompile Include="..\..\Common\DescriptorUtil.cpp" />
+    <ClCompile Include="..\..\Common\LoadM3d.cpp" />
+    <ClCompile Include="..\..\Common\MaterialLib.cpp" />
+    <ClCompile Include="..\..\Common\MeshGen.cpp" />
+    <ClCompile Include="..\..\Common\MathHelper.cpp" />
+    <ClCompile Include="..\..\Common\Prepass.cpp" />
+    <ClCompile Include="..\..\Common\PsoLib.cpp" />
+    <ClCompile Include="..\..\Common\Random.cpp" />
+    <ClCompile Include="..\..\Common\ShaderLib.cpp" />
+    <ClCompile Include="..\..\Common\SkinnedData.cpp" />
+    <ClCompile Include="..\..\Common\TextureLib.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\AlphaTestEffect.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\BasicEffect.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\BasicPostProcess.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\BinaryReader.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\BufferHelpers.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\CommonStates.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\DDSTextureLoader.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\DebugEffect.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\DescriptorHeap.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\DirectXHelpers.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\DualPostProcess.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\DualTextureEffect.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\EffectCommon.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\EffectFactory.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\EffectPipelineStateDescription.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\EffectTextureFactory.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\EnvironmentMapEffect.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\GamePad.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\GeometricPrimitive.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\Geometry.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\GraphicsMemory.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\Keyboard.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\LinearAllocator.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\Model.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\ModelLoadSDKMESH.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\ModelLoadVBO.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\Mouse.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\NormalMapEffect.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\PBREffect.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\PBREffectFactory.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\pch.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\PrimitiveBatch.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\ResourceUploadBatch.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\ScreenGrab.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\SimpleMath.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\SkinnedEffect.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\SpriteBatch.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\SpriteFont.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\ToneMapPostProcess.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\VertexTypes.cpp" />
+    <ClCompile Include="..\..\External\DirectXTK12\Src\WICTextureLoader.cpp" />
+    <ClCompile Include="..\..\External\imgui\backends\imgui_impl_dx12.cpp" />
+    <ClCompile Include="..\..\External\imgui\backends\imgui_impl_win32.cpp" />
+    <ClCompile Include="..\..\External\imgui\imgui.cpp" />
+    <ClCompile Include="..\..\External\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\..\External\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\..\External\imgui\imgui_tables.cpp" />
+    <ClCompile Include="..\..\External\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="FrameResource.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="ShadowMap.cpp" />
+    <ClCompile Include="TerrainMS.cpp" />
+    <ClCompile Include="TerrainMSApp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Common\Camera.h" />
+    <ClInclude Include="..\..\Common\d3dApp.h" />
+    <ClInclude Include="..\..\Common\d3dUtil.h" />
+    <ClInclude Include="..\..\Common\d3dx12.h" />
+    <ClInclude Include="..\..\Common\GameTimer.h" />
+    <ClInclude Include="..\..\Common\DescriptorUtil.h" />
+    <ClInclude Include="..\..\Common\LoadM3d.h" />
+    <ClInclude Include="..\..\Common\MaterialLib.h" />
+    <ClInclude Include="..\..\Common\MeshGen.h" />
+    <ClInclude Include="..\..\Common\MathHelper.h" />
+    <ClInclude Include="..\..\Common\MeshUtil.h" />
+    <ClInclude Include="..\..\Common\Prepass.h" />
+    <ClInclude Include="..\..\Common\PsoLib.h" />
+    <ClInclude Include="..\..\Common\Random.h" />
+    <ClInclude Include="..\..\Common\ShaderLib.h" />
+    <ClInclude Include="..\..\Common\SkinnedData.h" />
+    <ClInclude Include="..\..\Common\TextureLib.h" />
+    <ClInclude Include="..\..\Common\UploadBuffer.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\Audio.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\BufferHelpers.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\CommonStates.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\DDSTextureLoader.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\DescriptorHeap.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\DirectXHelpers.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\EffectPipelineStateDescription.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\Effects.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\GamePad.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\GeometricPrimitive.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\GraphicsMemory.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\Keyboard.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\Model.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\Mouse.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\PostProcess.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\PrimitiveBatch.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\RenderTargetState.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\ResourceUploadBatch.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\ScreenGrab.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\SimpleMath.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\SpriteBatch.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\SpriteFont.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\VertexTypes.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\WICTextureLoader.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\AlignedNew.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\Bezier.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\BinaryReader.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\d3dx12.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\DDS.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\DemandCreate.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\EffectCommon.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\Geometry.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\LinearAllocator.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\LoaderHelpers.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\pch.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\PlatformHelpers.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\SDKMesh.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\SharedResourcePool.h" />
+    <ClInclude Include="..\..\External\DirectXTK12\Src\vbo.h" />
+    <ClInclude Include="..\..\External\imgui\backends\imgui_impl_dx12.h" />
+    <ClInclude Include="..\..\External\imgui\backends\imgui_impl_win32.h" />
+    <ClInclude Include="..\..\External\imgui\imconfig.h" />
+    <ClInclude Include="..\..\External\imgui\imgui.h" />
+    <ClInclude Include="..\..\External\imgui\imgui_internal.h" />
+    <ClInclude Include="..\..\External\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\..\External\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\..\External\imgui\imstb_truetype.h" />
+    <CopyFileToFolders Include="..\..\Shaders\SharedTypes.h">
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <ClInclude Include="FrameResource.h" />
+    <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="ShadowMap.h" />
+    <ClInclude Include="TerrainMS.h" />
+    <ClInclude Include="TerrainMSApp.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\External\DirectXTK12\Inc\SimpleMath.inl" />
+    <None Include="..\..\External\DirectXTK12\Src\TeapotData.inc" />
+    <CopyFileToFolders Include="packages.config">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\Shaders\Common.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\DebugTex.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\DrawNormals.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\DrawParticles.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\LightingUtil.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\ParticlesCS.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\Shadows.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\Sky.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\Ssao.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\SsaoBlur.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\Terrain.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\TerrainMS.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\Shaders\DefaultHybridRT.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\HelixParticlesMS.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\HybridReflections.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\Intersections.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\Raytracing.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\Shaders\DefaultGeo.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\DefaultPS.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\TessGeo.hlsl">
+      <FileType>Document</FileType>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\Shaders</DestinationFolders>
+      <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\Shaders</DestinationFolders>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\Microsoft.Direct3D.D3D12.1.614.1\build\native\Microsoft.Direct3D.D3D12.targets" Condition="Exists('packages\Microsoft.Direct3D.D3D12.1.614.1\build\native\Microsoft.Direct3D.D3D12.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.Direct3D.D3D12.1.614.1\build\native\Microsoft.Direct3D.D3D12.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Direct3D.D3D12.1.614.1\build\native\Microsoft.Direct3D.D3D12.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.Direct3D.D3D12.1.614.1\build\native\Microsoft.Direct3D.D3D12.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Direct3D.D3D12.1.614.1\build\native\Microsoft.Direct3D.D3D12.targets'))" />
+  </Target>
+</Project>

@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{a7c657e8-675a-4751-b3db-3f5da78f909a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectXTK12">
+      <UniqueIdentifier>{9c70e9e2-9aa8-4b00-93c8-e45cb999492f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectXTK12\Inc">
+      <UniqueIdentifier>{f4f8a610-0b39-4524-bf6d-0cd310ac595a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectXTK12\Src">
+      <UniqueIdentifier>{3ace18da-d1da-4ca3-9892-a93366d8bd47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{3c1fb67b-85b5-4712-9d59-5b0cb1e8efc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui\backends">
+      <UniqueIdentifier>{da52b717-e174-4bc4-afce-59b2a79e75a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{47047fb6-7fb1-4229-ac63-a45767baaec4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BezierPatchApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\AlphaTestEffect.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\BasicEffect.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\BasicPostProcess.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\BinaryReader.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\BufferHelpers.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\CommonStates.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\DDSTextureLoader.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\DebugEffect.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\DescriptorHeap.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\DirectXHelpers.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\DualPostProcess.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\DualTextureEffect.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\EffectCommon.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\EffectFactory.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\EffectPipelineStateDescription.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\EffectTextureFactory.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\EnvironmentMapEffect.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\GamePad.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\GeometricPrimitive.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\Geometry.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\GraphicsMemory.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\Keyboard.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\LinearAllocator.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\Model.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\ModelLoadSDKMESH.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\ModelLoadVBO.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\Mouse.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\NormalMapEffect.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\PBREffect.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\PBREffectFactory.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\pch.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\PrimitiveBatch.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\ResourceUploadBatch.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\ScreenGrab.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\SimpleMath.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\SkinnedEffect.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\SpriteBatch.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\SpriteFont.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\ToneMapPostProcess.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\VertexTypes.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\DirectXTK12\Src\WICTextureLoader.cpp">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\imgui\backends\imgui_impl_dx12.cpp">
+      <Filter>imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\imgui\backends\imgui_impl_win32.cpp">
+      <Filter>imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\imgui\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\imgui\imgui_demo.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\imgui\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\imgui\imgui_tables.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\imgui\imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\MeshGen.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\MathHelper.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\GameTimer.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\DescriptorUtil.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\d3dUtil.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\d3dApp.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Camera.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Random.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\MaterialLib.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Prepass.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\PsoLib.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\ShaderLib.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\TextureLib.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameResource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\LoadM3d.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\SkinnedData.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\Audio.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\BufferHelpers.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\CommonStates.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\DDSTextureLoader.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\DescriptorHeap.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\DirectXHelpers.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\EffectPipelineStateDescription.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\Effects.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\GamePad.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\GeometricPrimitive.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\GraphicsMemory.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\Keyboard.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\Model.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\Mouse.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\PostProcess.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\PrimitiveBatch.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\RenderTargetState.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\ResourceUploadBatch.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\ScreenGrab.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\SimpleMath.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\SpriteBatch.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\SpriteFont.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\VertexTypes.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Inc\WICTextureLoader.h">
+      <Filter>DirectXTK12\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\AlignedNew.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\Bezier.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\BinaryReader.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\d3dx12.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\DDS.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\DemandCreate.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\EffectCommon.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\Geometry.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\LinearAllocator.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\LoaderHelpers.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\pch.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\PlatformHelpers.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\SDKMesh.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\SharedResourcePool.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\DirectXTK12\Src\vbo.h">
+      <Filter>DirectXTK12\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\imgui\backends\imgui_impl_dx12.h">
+      <Filter>imgui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\imgui\backends\imgui_impl_win32.h">
+      <Filter>imgui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\imgui\imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\imgui\imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\imgui\imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\imgui\imstb_rectpack.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\imgui\imstb_textedit.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\imgui\imstb_truetype.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Camera.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\d3dApp.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\d3dUtil.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\d3dx12.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\DescriptorUtil.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\GameTimer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\MathHelper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\MeshGen.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\MeshUtil.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\UploadBuffer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="BezierPatchApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Random.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\MaterialLib.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Prepass.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\PsoLib.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\ShaderLib.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\TextureLib.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\LoadM3d.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SkinnedData.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\External\DirectXTK12\Inc\SimpleMath.inl">
+      <Filter>DirectXTK12\Inc</Filter>
+    </None>
+    <None Include="..\..\External\DirectXTK12\Src\TeapotData.inc">
+      <Filter>DirectXTK12\Src</Filter>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\Shaders\BasicColor.hlsl">
+      <Filter>Shaders</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\SharedTypes.h">
+      <Filter>Shaders</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\Common.hlsl">
+      <Filter>Shaders</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\LightingUtil.hlsl">
+      <Filter>Shaders</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\BasicLit.hlsl">
+      <Filter>Shaders</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\BasicTex.hlsl">
+      <Filter>Shaders</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\BasicBlend.hlsl">
+      <Filter>Shaders</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\BasicTessellation.hlsl">
+      <Filter>Shaders</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\Shaders\BezierTessellation.hlsl" />
+    <CopyFileToFolders Include="..\..\bin\Shaders\BezierTessellation.hlsl">
+      <Filter>Shaders</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,71 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+MyDemos/Shadows/.vs/Shadows/v14/.suo
+MyDemos/Shadows/.vs/Shadows/v16/.suo
+*.db
+*.ipch
+MyDemos/Shadows/Models/.vs/Models/v16/.suo
+*.sqlite
+*.log
+*.recipe
+*.ilk
+*.pdb
+*.tlog
+*.idb
+*.opendb
+*.db-wal
+*.db-shm
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vsidx
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Pp]ackages/
+.vs/
+
+# Paths
+bin/
