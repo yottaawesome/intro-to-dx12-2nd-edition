@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is an unofficial fork of the [sample code repo](https://github.com/d3dcoder/d3d12book_2ed) for second edition of [Frank D. Luna's](http://www.d3dcoder.net/default.htm) excellent book [Introduction to 3D Game Programming with DirectX 12](https://www.d3dcoder.net/d3d12_v2.htm). No representation is made that the source code belongs to me, it's simply reproduced here so I can modify it for my use and remains the copyright of Frank D. Luna.
+This is an unofficial fork of the [sample code repo](https://github.com/d3dcoder/d3d12book_2ed) for the second edition of [Frank D. Luna's](http://www.d3dcoder.net/default.htm) excellent book [Introduction to 3D Game Programming with DirectX 12](https://www.d3dcoder.net/d3d12_v2.htm). No representation is made that the source code belongs to me, it's simply reproduced here so I can modify it for my use and remains the copyright of Frank D. Luna.
 
 ## Building
 
