@@ -10,7 +10,7 @@ You'll need [Visual Studio 2026](https://visualstudio.microsoft.com/) with the _
 
 ## Changes
 
-All projects have been updated to use Visual Studio 2026 and retargeted to the latest Windows SDK. For convenience, an additional solution file AllProjects.sln has been added that includes all the projects. 
+Like the previous edition's code, all projects are gradually getting updated to use Visual Studio 2026 and retargeted to the latest Windows SDK. For convenience, an additional solution file AllProjects.sln will be added that includes all the projects. 
 
 Much like the first edition, the samples fail to compile on C++20 and later standards due MSVC rejecting passing pointers to temporaries as arguments to function calls. I'm in the process of fixing this, but it's tedious and will take some time.
 
