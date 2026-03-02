@@ -1,0 +1,16 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="C1_XMVECTOR/XMVECTOR.vcxproj" Id="508e9197-885a-4954-b5dd-b528ce27e803" />
+  <Project Path="C2_XMMATRIX/XMMATRIX.vcxproj" Id="7cdbad5d-00b5-4477-965e-803411b39454">
+    <Platform Project="Win32" />
+  </Project>
+  <Project Path="C4_Init Direct3D/InitDirect3D.vcxproj" Id="44228814-a8fe-45f3-91a8-5f73ad61ab02" />
+  <Project Path="C6_Box/Box.vcxproj" Id="52228814-a8fe-45f3-91a8-5f73ad61ab02" />
+  <Project Path="C6_BoxGrid/BoxGrid.vcxproj" Id="52228814-a8fe-45f3-91a8-5f73ad61ab46" />
+  <Project Path="C7_Shapes/Shapes.vcxproj" Id="18228814-a8fe-45f3-91a8-5f73ad61ab02" />
+  <Project Path="C7_Waves/Waves.vcxproj" Id="18228814-a8fe-45f3-91a8-5f73ad61ab58" />
+  <Project Path="C8_LitShapes/LitShapes.vcxproj" Id="18228814-a8fe-45f3-91a8-5f73ad61ab49" />
+</Solution>
