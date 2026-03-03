@@ -6,13 +6,11 @@ This is an unofficial fork of the [sample code repo](https://github.com/d3dcoder
 
 ## Building
 
-You'll need [Visual Studio 2026](https://visualstudio.microsoft.com/) with the _Desktop development with C++_ and _Game development with C++_ Visual Studio workloads. Once you've satisfied these requirements, you should be able to open any of the included SLN files, build, and run the sample apps. Obviously, you also need to have a GPU that supports DirectX 12 for the samples to work correctly.
+You'll need [Visual Studio 2026](https://visualstudio.microsoft.com/) with the _Desktop development with C++_ and _Game development with C++_ Visual Studio workloads. Obviously, you also need to have a GPU that supports DirectX 12 for the samples to work correctly. Once you've satisfied these requirements, you should be able to open the `intro-to-d3d12-second-edition.slnx` file in Visual Studio and build all the projects. To run an individual project, make sure you set the `Debugging > Working Directory` project setting to `$(ProjectDir)..\..` first to allow the binary to locate the necessary shader, texture and model files. 
 
 ## Changes
 
-Like the previous edition's code, all projects are gradually getting updated to use Visual Studio 2026 and retargeted to the latest Windows SDK. For convenience, an additional solution file AllProjects.sln will be added that includes all the projects. 
-
-Much like the first edition, the samples fail to compile on C++20 and later standards due MSVC rejecting passing pointers to temporaries as arguments to function calls. I'm in the process of fixing this, but it's tedious and will take some time.
+All projects have been updated to use the MSVC v145 toolset and a solution file has been added into the Demos subdirectory that includes all the projects.
 
 ## Considerations
 
