@@ -480,37 +480,15 @@
     <CopyFileToFolders Include="..\..\Shaders\DefaultHybridRT.hlsl">
       <Filter>Shaders</Filter>
     </CopyFileToFolders>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="..\..\Shaders\DrawParticles.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="..\..\Shaders\HelixParticlesMS.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="..\..\Shaders\HybridReflections.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="..\..\Shaders\Intersections.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="..\..\Shaders\ParticlesCS.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="..\..\Shaders\Raytracing.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="..\..\Shaders\Ssao.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="..\..\Shaders\SsaoBlur.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="..\..\Shaders\Terrain.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="..\..\Shaders\TerrainMS.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
+    <CopyFileToFolders Include="..\..\Shaders\DrawParticles.hlsl" />
+    <CopyFileToFolders Include="..\..\Shaders\HelixParticlesMS.hlsl" />
+    <CopyFileToFolders Include="..\..\Shaders\HybridReflections.hlsl" />
+    <CopyFileToFolders Include="..\..\Shaders\Intersections.hlsl" />
+    <CopyFileToFolders Include="..\..\Shaders\ParticlesCS.hlsl" />
+    <CopyFileToFolders Include="..\..\Shaders\Raytracing.hlsl" />
+    <CopyFileToFolders Include="..\..\Shaders\Ssao.hlsl" />
+    <CopyFileToFolders Include="..\..\Shaders\SsaoBlur.hlsl" />
+    <CopyFileToFolders Include="..\..\Shaders\Terrain.hlsl" />
+    <CopyFileToFolders Include="..\..\Shaders\TerrainMS.hlsl" />
   </ItemGroup>
 </Project>

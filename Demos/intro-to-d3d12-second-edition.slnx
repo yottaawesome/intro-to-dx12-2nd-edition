@@ -3,14 +3,89 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="C1_XMVECTOR/XMVECTOR.vcxproj" Id="508e9197-885a-4954-b5dd-b528ce27e803" />
-  <Project Path="C2_XMMATRIX/XMMATRIX.vcxproj" Id="7cdbad5d-00b5-4477-965e-803411b39454">
-    <Platform Project="Win32" />
-  </Project>
-  <Project Path="C4_Init Direct3D/InitDirect3D.vcxproj" Id="44228814-a8fe-45f3-91a8-5f73ad61ab02" />
-  <Project Path="C6_Box/Box.vcxproj" Id="52228814-a8fe-45f3-91a8-5f73ad61ab02" />
-  <Project Path="C6_BoxGrid/BoxGrid.vcxproj" Id="52228814-a8fe-45f3-91a8-5f73ad61ab46" />
-  <Project Path="C7_Shapes/Shapes.vcxproj" Id="18228814-a8fe-45f3-91a8-5f73ad61ab02" />
-  <Project Path="C7_Waves/Waves.vcxproj" Id="18228814-a8fe-45f3-91a8-5f73ad61ab58" />
-  <Project Path="C8_LitShapes/LitShapes.vcxproj" Id="18228814-a8fe-45f3-91a8-5f73ad61ab49" />
+  <Folder Name="/01/">
+    <Project Path="C1_XMVECTOR/XMVECTOR.vcxproj" Id="508e9197-885a-4954-b5dd-b528ce27e803" />
+  </Folder>
+  <Folder Name="/02/">
+    <Project Path="C2_XMMATRIX/XMMATRIX.vcxproj" Id="7cdbad5d-00b5-4477-965e-803411b39454">
+      <Platform Project="Win32" />
+    </Project>
+  </Folder>
+  <Folder Name="/04/">
+    <Project Path="C4_Init Direct3D/InitDirect3D.vcxproj" Id="44228814-a8fe-45f3-91a8-5f73ad61ab02" />
+  </Folder>
+  <Folder Name="/06/">
+    <Project Path="C6_Box/Box.vcxproj" Id="52228814-a8fe-45f3-91a8-5f73ad61ab02" />
+    <Project Path="C6_BoxGrid/BoxGrid.vcxproj" Id="52228814-a8fe-45f3-91a8-5f73ad61ab46" />
+  </Folder>
+  <Folder Name="/07/">
+    <Project Path="C7_Shapes/Shapes.vcxproj" Id="18228814-a8fe-45f3-91a8-5f73ad61ab02" />
+    <Project Path="C7_Waves/Waves.vcxproj" Id="18228814-a8fe-45f3-91a8-5f73ad61ab58" />
+  </Folder>
+  <Folder Name="/08/">
+    <Project Path="C8_LitShapes/LitShapes.vcxproj" Id="18228814-a8fe-45f3-91a8-5f73ad61ab49" />
+    <Project Path="C8_LitWaves/LitWaves.vcxproj" Id="18228814-a8fe-45f3-91a8-5f73ad61ab53" />
+  </Folder>
+  <Folder Name="/09/">
+    <Project Path="C9_Crate/Crate.vcxproj" Id="22228814-a8fe-45f3-91a8-5f73ad61ab49" />
+    <Project Path="C9_TexturedShapes/TexturedShapes.vcxproj" Id="22228814-a8fe-45f3-91a8-5f73ad61ab29" />
+    <Project Path="C9_TexWaves/TexWaves.vcxproj" Id="f2228814-01fe-45f3-91a8-5f73ad61ab29" />
+  </Folder>
+  <Folder Name="/10/">
+    <Project Path="C10_BlendDemo/BlendDemo.vcxproj" Id="22228814-01fe-45f3-91a8-5f73ad61ab29" />
+  </Folder>
+  <Folder Name="/11/">
+    <Project Path="C11_Stenciling/Stenciling.vcxproj" Id="22228814-a8fe-45f3-91a8-5f73ad61ab50" />
+  </Folder>
+  <Folder Name="/12/">
+    <Project Path="C12_BillboardsGS/BillboardsGS.vcxproj" Id="22228814-01fe-45f3-91a8-5f73ad61ab32" />
+  </Folder>
+  <Folder Name="/13/">
+    <Project Path="C13_Blur/Blur.vcxproj" Id="22228815-01fe-45f3-91a8-5f73ad61ab2a" />
+    <Project Path="C13_VecAddCS/VecAddCS.vcxproj" Id="12228814-a8fe-45f3-91a8-5f73ad61ab49" />
+    <Project Path="C13_WavesCS/WavesCS.vcxproj" Id="22228815-01fe-45f3-91a8-5f73ad61ab29" />
+  </Folder>
+  <Folder Name="/14/">
+    <Project Path="C14_BasicTessellation/BasicTessellation.vcxproj" Id="22228814-01fe-45f3-92a8-5f73ad61ab29" />
+    <Project Path="C14_BezierPatch/BezierPatch.vcxproj" Id="22228814-01fe-45f3-93a8-5f73ad61ab29" />
+  </Folder>
+  <Folder Name="/16/">
+    <Project Path="C16_InstancingAndFrustumCulling/InstancingAndCulling.vcxproj" Id="be228814-a8fe-45f3-9169-5f73ad61ab02" />
+  </Folder>
+  <Folder Name="/17/">
+    <Project Path="C17_Picking/Picking.vcxproj" Id="be228814-a8fe-45f3-91a8-5f73ad61ab70" />
+  </Folder>
+  <Folder Name="/18/">
+    <Project Path="C18C19_CubeAndNormalMapping/CubeAndNormalMaps.vcxproj" />
+    <Project Path="C18_DynamicCubeMap/DynamicCubeMap.vcxproj" Id="be228822-a8fe-45f3-91a8-5f73ad61ab02" />
+  </Folder>
+  <Folder Name="/19/">
+    <Project Path="C19_DisplacementMapping/DisplacementMapping.vcxproj" Id="be998814-a8fe-45f3-91a8-5f73ad61ab02" />
+  </Folder>
+  <Folder Name="/20/">
+    <Project Path="C20_Shadows/Shadows.vcxproj" Id="be228814-a8fe-45f3-91a8-5f73ad61ab02" />
+  </Folder>
+  <Folder Name="/21/">
+    <Project Path="C21_Ssao/Ssao.vcxproj" Id="6f896015-53dd-4d1a-a700-d096fc774252" />
+  </Folder>
+  <Folder Name="/22/">
+    <Project Path="C22_QuatDemo/QuatDemo.vcxproj" Id="6f896015-2023-4d1a-a700-d096fc774252" />
+  </Folder>
+  <Folder Name="/23/">
+    <Project Path="C23_SkinnedMesh/SkinnedMesh.vcxproj" Id="6f896015-5369-4d1a-a700-d096fc774252" />
+  </Folder>
+  <Folder Name="/24/">
+    <Project Path="C24_Terrain/Terrain.vcxproj" Id="7a0c1b22-2e78-458c-bec3-4ed8418d3a47" />
+  </Folder>
+  <Folder Name="/25/">
+    <Project Path="C25_ParticlesCS/ParticlesCS.vcxproj" Id="d4353b44-be65-4935-90f4-e503fa80a30c" />
+  </Folder>
+  <Folder Name="/26/">
+    <Project Path="C26_ParticlesMS/ParticlesMS.vcxproj" Id="6f896015-90dd-4d1a-a700-d096fc774252" />
+    <Project Path="C26_TerrainMS/TerrainMS.vcxproj" Id="f35e50ae-838f-4f9e-aca3-c2a88e2b05a1" />
+  </Folder>
+  <Folder Name="/27/">
+    <Project Path="C27_HybridRayTracing/HybridRayTracing.vcxproj" />
+    <Project Path="C27_IntroRayTracing/RayTracingIntro.vcxproj" Id="2950c5e5-de0b-44c8-904a-c1f05a4b2e37" />
+  </Folder>
 </Solution>

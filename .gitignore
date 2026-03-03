@@ -69,3 +69,6 @@ bld/
 
 # Paths
 bin/
+
+imgui.ini
+results.txt
