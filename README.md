@@ -10,7 +10,7 @@ You'll need [Visual Studio 2026](https://visualstudio.microsoft.com/) with the _
 
 ## Changes
 
-All projects have been updated to use the MSVC v145 toolset and a solution file has been added into the Demos subdirectory that includes all the projects.
+All projects have been updated to use the MSVC v145 toolset and retargeted to using the latest MSVC C++ standard. This required fixing the same compilation errors in C++20 mode that affected the first edition's source. For convenience, a solution file has been added into the `Demos` subdirectory that includes all the projects.
 
 ## Considerations
 
