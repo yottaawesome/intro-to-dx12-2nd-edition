@@ -56,7 +56,7 @@
     <Project Path="C17_Picking/Picking.vcxproj" Id="be228814-a8fe-45f3-91a8-5f73ad61ab70" />
   </Folder>
   <Folder Name="/18/">
-    <Project Path="C18C19_CubeAndNormalMapping/CubeAndNormalMaps.vcxproj" />
+    <Project Path="C18C19_CubeAndNormalMapping/CubeAndNormalMaps.vcxproj" Id="ed2274fa-66d6-4def-8933-6c7826afa091" />
     <Project Path="C18_DynamicCubeMap/DynamicCubeMap.vcxproj" Id="be228822-a8fe-45f3-91a8-5f73ad61ab02" />
   </Folder>
   <Folder Name="/19/">
@@ -85,7 +85,7 @@
     <Project Path="C26_TerrainMS/TerrainMS.vcxproj" Id="f35e50ae-838f-4f9e-aca3-c2a88e2b05a1" />
   </Folder>
   <Folder Name="/27/">
-    <Project Path="C27_HybridRayTracing/HybridRayTracing.vcxproj" />
+    <Project Path="C27_HybridRayTracing/HybridRayTracing.vcxproj" Id="f16358ea-61cc-4efe-905f-690216a1728f" />
     <Project Path="C27_IntroRayTracing/RayTracingIntro.vcxproj" Id="2950c5e5-de0b-44c8-904a-c1f05a4b2e37" />
   </Folder>
 </Solution>
