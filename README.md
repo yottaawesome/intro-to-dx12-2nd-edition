@@ -6,7 +6,7 @@ This is an unofficial fork of the [sample code repo](https://github.com/d3dcoder
 
 ## Building
 
-You'll need [Visual Studio 2026](https://visualstudio.microsoft.com/) with the _Desktop development with C++_ and _Game development with C++_ Visual Studio workloads. Obviously, you also need to have a GPU that supports DirectX 12 for the samples to work correctly. Once you've satisfied these requirements, you should be able to open the `intro-to-d3d12-second-edition.slnx` file in Visual Studio and build all the projects. To run an individual project, make sure you set the `Debugging > Working Directory` project setting to `$(ProjectDir)..\..` first to allow the binary to locate the necessary shader, texture and model files. 
+You'll need [Visual Studio 2026](https://visualstudio.microsoft.com/) with the _Desktop development with C++_ and _Game development with C++_ Visual Studio workloads. Obviously, you also need to have a GPU that supports DirectX 12 for the samples to work correctly. You will need `nuget.exe` (included for convenience) placed in the `Demos` directory next to the `intro-to-d3d12-second-edition.slnx` solution file in order to restore the required nuget packages when building. Once you've satisfied these requirements, you should be able to open the `intro-to-d3d12-second-edition.slnx` file in Visual Studio and build all the projects. To run an individual project, make sure you set the `Debugging > Working Directory` project setting to `$(ProjectDir)..\..` first to allow the binary to locate the necessary shader, texture and model files. 
 
 ## Changes
 
