@@ -470,8 +470,5 @@
       <Filter>Shaders</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="..\..\Shaders\BezierTessellation.hlsl" />
-    <CopyFileToFolders Include="..\..\bin\Shaders\BezierTessellation.hlsl">
-      <Filter>Shaders</Filter>
-    </CopyFileToFolders>
   </ItemGroup>
 </Project>
