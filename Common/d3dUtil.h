@@ -84,8 +84,6 @@ public:
 
     static bool IsKeyDown(int vkeyCode);
 
-    static std::string ToString(HRESULT hr);
-
     static UINT Align(UINT size, UINT alignment)
     {
         return (size + (alignment - 1)) & ~(alignment - 1);
