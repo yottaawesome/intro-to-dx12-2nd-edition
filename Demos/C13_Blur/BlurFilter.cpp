@@ -91,17 +91,20 @@ void BlurFilter::Execute(ID3D12GraphicsCommandList* cmdList,
     blurCB.gBlurOutputIndex = mBlur0UavIndex;
     mVertPassConstants = linearAllocator.AllocateConstant(blurCB);
 
-    cmdList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(input,
-                             D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_COPY_SOURCE));
+    auto transition = CD3DX12_RESOURCE_BARRIER::Transition(input,
+        D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_COPY_SOURCE);
+    cmdList->ResourceBarrier(1, &transition);
 
-    cmdList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(mBlurMap0.Get(),
-                             D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_COPY_DEST));
+	transition = CD3DX12_RESOURCE_BARRIER::Transition(mBlurMap0.Get(),
+		D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_COPY_DEST);
+    cmdList->ResourceBarrier(1, &transition);
 
     // Copy the input (back-buffer in this example) to BlurMap0.
     cmdList->CopyResource(mBlurMap0.Get(), input);
 
-    cmdList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(mBlurMap0.Get(),
-                             D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_GENERIC_READ));
+    transition = CD3DX12_RESOURCE_BARRIER::Transition(mBlurMap0.Get(),
+        D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_GENERIC_READ);
+    cmdList->ResourceBarrier(1, &transition);
 
     for(int i = 0; i < blurCount; ++i)
     {
@@ -109,8 +112,9 @@ void BlurFilter::Execute(ID3D12GraphicsCommandList* cmdList,
         // Horizontal Blur pass.
         //
 
-        cmdList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(mBlurMap1.Get(),
-                                 D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_UNORDERED_ACCESS));
+        transition = CD3DX12_RESOURCE_BARRIER::Transition(mBlurMap1.Get(),
+                                 D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_UNORDERED_ACCESS);
+        cmdList->ResourceBarrier(1, &transition);
 
         cmdList->SetComputeRootConstantBufferView(
             COMPUTE_ROOT_ARG_DISPATCH_CBV,
@@ -123,11 +127,13 @@ void BlurFilter::Execute(ID3D12GraphicsCommandList* cmdList,
         UINT numGroupsX = (UINT)ceilf(mWidth / 256.0f);
         cmdList->Dispatch(numGroupsX, mHeight, 1);
 
-        cmdList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(mBlurMap0.Get(),
-                                 D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_UNORDERED_ACCESS));
+        transition = CD3DX12_RESOURCE_BARRIER::Transition(mBlurMap0.Get(),
+                                 D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_UNORDERED_ACCESS);
+        cmdList->ResourceBarrier(1, &transition);
 
-        cmdList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(mBlurMap1.Get(),
-                                 D3D12_RESOURCE_STATE_UNORDERED_ACCESS, D3D12_RESOURCE_STATE_GENERIC_READ));
+        transition = CD3DX12_RESOURCE_BARRIER::Transition(mBlurMap1.Get(),
+                                 D3D12_RESOURCE_STATE_UNORDERED_ACCESS, D3D12_RESOURCE_STATE_GENERIC_READ);
+        cmdList->ResourceBarrier(1, &transition);
 
         //
         // Vertical Blur pass.
@@ -144,8 +150,9 @@ void BlurFilter::Execute(ID3D12GraphicsCommandList* cmdList,
         UINT numGroupsY = (UINT)ceilf(mHeight / 256.0f);
         cmdList->Dispatch(mWidth, numGroupsY, 1);
 
-        cmdList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(mBlurMap0.Get(),
-                                 D3D12_RESOURCE_STATE_UNORDERED_ACCESS, D3D12_RESOURCE_STATE_GENERIC_READ));
+        transition = CD3DX12_RESOURCE_BARRIER::Transition(mBlurMap0.Get(),
+                                 D3D12_RESOURCE_STATE_UNORDERED_ACCESS, D3D12_RESOURCE_STATE_GENERIC_READ);
+        cmdList->ResourceBarrier(1, &transition);
     }
 }
 
@@ -203,8 +210,9 @@ void BlurFilter::BuildResources()
     texDesc.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN;
     texDesc.Flags = D3D12_RESOURCE_FLAG_ALLOW_UNORDERED_ACCESS;
 
+	auto heapProps = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
     ThrowIfFailed(md3dDevice->CreateCommittedResource(
-        &CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT),
+        &heapProps,
         D3D12_HEAP_FLAG_NONE,
         &texDesc,
         D3D12_RESOURCE_STATE_GENERIC_READ,
@@ -212,7 +220,7 @@ void BlurFilter::BuildResources()
         IID_PPV_ARGS(&mBlurMap0)));
 
     ThrowIfFailed(md3dDevice->CreateCommittedResource(
-        &CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT),
+        &heapProps,
         D3D12_HEAP_FLAG_NONE,
         &texDesc,
         D3D12_RESOURCE_STATE_GENERIC_READ,
