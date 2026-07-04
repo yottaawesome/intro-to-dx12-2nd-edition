@@ -16,6 +16,10 @@ All projects have been updated to use the MSVC v145 toolset and retargeted to us
 
 If you're a novice looking to learn game development, this book and repo is probably not the best place to start, and you might be better off looking at resources for building games in Unreal Engine or Unity. This repo is mainly useful for professional and amateur game engine and graphics programmers wanting to learn how to work with DirectX 12. Needless to say, building a 3D game or rendering engine is _a lot of hard work_, and this book really only touches on the DX12 rendering aspect of such an engine, without touching on things like design, sound, gameplay, etc, so don't expect to master game development purely using this resource. 
 
+## Revisited source code
+
+I'm working on [revisiting the source code to improve it](https://github.com/yottaawesome/intro-to-dx12-2nd-edition-revisited).
+
 ## Additional resources
 
 ### General
