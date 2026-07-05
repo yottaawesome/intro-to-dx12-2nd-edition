@@ -195,30 +195,29 @@ void GpuWaves::Update(
 			COMPUTE_ROOT_ARG_DISPATCH_CBV,
 			mUpdateConstantsMemHandle.GpuAddress());
 
-		cmdList->ResourceBarrier(
-			1, &CD3DX12_RESOURCE_BARRIER::Transition(
+		auto transition = CD3DX12_RESOURCE_BARRIER::Transition(
 			mPrevSol.Get(),
 			D3D12_RESOURCE_STATE_UNORDERED_ACCESS,
-			D3D12_RESOURCE_STATE_GENERIC_READ));
+			D3D12_RESOURCE_STATE_GENERIC_READ);
+		cmdList->ResourceBarrier(1, &transition);
 
-		cmdList->ResourceBarrier(
-			1, &CD3DX12_RESOURCE_BARRIER::Transition(
+		transition = CD3DX12_RESOURCE_BARRIER::Transition(
 			mCurrSol.Get(),
 			D3D12_RESOURCE_STATE_UNORDERED_ACCESS,
-			D3D12_RESOURCE_STATE_GENERIC_READ));
+			D3D12_RESOURCE_STATE_GENERIC_READ);
+		cmdList->ResourceBarrier(1, &transition);
 
-
-		cmdList->ResourceBarrier(
-			1, &CD3DX12_RESOURCE_BARRIER::Transition(
+		transition = CD3DX12_RESOURCE_BARRIER::Transition(
 			mPrevSol.Get(),
 			D3D12_RESOURCE_STATE_GENERIC_READ,
-			D3D12_RESOURCE_STATE_UNORDERED_ACCESS));
+			D3D12_RESOURCE_STATE_UNORDERED_ACCESS);
+		cmdList->ResourceBarrier(1, &transition);
 
-		cmdList->ResourceBarrier(
-			1, &CD3DX12_RESOURCE_BARRIER::Transition(
+		transition = CD3DX12_RESOURCE_BARRIER::Transition(
 			mCurrSol.Get(),
 			D3D12_RESOURCE_STATE_GENERIC_READ,
-			D3D12_RESOURCE_STATE_UNORDERED_ACCESS));
+			D3D12_RESOURCE_STATE_UNORDERED_ACCESS);
+		cmdList->ResourceBarrier(1, &transition);
 
 		// How many groups do we need to dispatch to cover the wave grid.  
 		// Note that mNumRows and mNumCols should be divisible by 16
