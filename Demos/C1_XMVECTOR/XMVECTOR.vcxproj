@@ -152,6 +152,9 @@
     <ClCompile Include="VectorOps.cpp" />
     <ClCompile Include="xmvec3.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Direct3D.D3D12" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
