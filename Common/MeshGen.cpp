@@ -4,6 +4,7 @@
 
 #include "MeshGen.h"
 #include <algorithm>
+#include <iterator>
 
 using namespace DirectX;
 
@@ -93,7 +94,7 @@ MeshGenData MeshGen::CreateBox(float width, float height, float depth, uint32_t 
     v[22] = MeshGenVertex(+w2, +h2, +d2, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f);
     v[23] = MeshGenVertex(+w2, -h2, +d2, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f);
 
-    meshData.Vertices.assign(&v[0], &v[24]);
+    meshData.Vertices.assign(std::begin(v), std::end(v));
 
     //
     // Create the indices.
@@ -125,7 +126,7 @@ MeshGenData MeshGen::CreateBox(float width, float height, float depth, uint32_t 
     i[30] = 20; i[31] = 21; i[32] = 22;
     i[33] = 20; i[34] = 22; i[35] = 23;
 
-    meshData.Indices32.assign(&i[0], &i[36]);
+    meshData.Indices32.assign(std::begin(i), std::end(i));
 
     // Put a cap on the number of subdivisions.
     numSubdivisions = std::min<uint32_t>(numSubdivisions, 6u);
