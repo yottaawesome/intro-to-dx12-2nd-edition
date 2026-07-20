@@ -442,7 +442,6 @@
     <None Include="..\..\External\DirectXTK12\Src\TeapotData.inc">
       <Filter>DirectXTK12\Src</Filter>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\..\Shaders\BasicColor.hlsl">
