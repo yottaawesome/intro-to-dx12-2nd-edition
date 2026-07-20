@@ -133,7 +133,7 @@ void InstancingAndCullingApp::Update(const GameTimer& gt)
     // If not, wait until the GPU has completed commands up to this fence point.
     if(mCurrFrameResource->Fence != 0 && mFence->GetCompletedValue() < mCurrFrameResource->Fence)
     {
-        HANDLE eventHandle = CreateEventEx(nullptr, false, false, EVENT_ALL_ACCESS);
+        HANDLE eventHandle = CreateEventEx(nullptr, nullptr, 0, EVENT_ALL_ACCESS);
         ThrowIfFailed(mFence->SetEventOnCompletion(mCurrFrameResource->Fence, eventHandle));
         WaitForSingleObject(eventHandle, INFINITE);
         CloseHandle(eventHandle);
@@ -194,15 +194,18 @@ void InstancingAndCullingApp::Draw(const GameTimer& gt)
     mCommandList->RSSetScissorRects(1, &mScissorRect);
 
     // Indicate a state transition on the resource usage.
-	mCommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
-		D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET));
+    auto transition = CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
+        D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+	mCommandList->ResourceBarrier(1, &transition);
 
     // Clear the back buffer and depth buffer.
     mCommandList->ClearRenderTargetView(CurrentBackBufferView(), Colors::LightSteelBlue, 0, nullptr);
     mCommandList->ClearDepthStencilView(DepthStencilView(), D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, nullptr);
 
     // Specify the buffers we are going to render to.
-    mCommandList->OMSetRenderTargets(1, &CurrentBackBufferView(), true, &DepthStencilView());
+    auto cbbv = CurrentBackBufferView();
+	auto dsv = DepthStencilView();
+    mCommandList->OMSetRenderTargets(1, &cbbv, true, &dsv);
 
 	auto passCB = mCurrFrameResource->PassCB->Resource();
 	mCommandList->SetGraphicsRootConstantBufferView(GFX_ROOT_ARG_PASS_CBV, passCB->GetGPUVirtualAddress());
@@ -223,8 +226,9 @@ void InstancingAndCullingApp::Draw(const GameTimer& gt)
     ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), mCommandList.Get());
 
     // Indicate a state transition on the resource usage.
-	mCommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
-		D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT));
+    transition = CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
+		D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+	mCommandList->ResourceBarrier(1, &transition);
 
     // Done recording commands.
     ThrowIfFailed(mCommandList->Close());
@@ -370,7 +374,8 @@ void InstancingAndCullingApp::AnimateMaterials(const GameTimer& gt)
 void InstancingAndCullingApp::UpdateInstanceData(const GameTimer& gt)
 {
     XMMATRIX view = mCamera.GetView();
-    XMMATRIX invView = XMMatrixInverse(&XMMatrixDeterminant(view), view);
+	auto detView = XMMatrixDeterminant(view);
+    XMMATRIX invView = XMMatrixInverse(&detView, view);
 
     auto currInstanceBuffer = mCurrFrameResource->InstanceBuffer.get();
     for(auto& e : mRitemLayer[(int)RenderLayer::OpaqueInstanced])
@@ -384,7 +389,8 @@ void InstancingAndCullingApp::UpdateInstanceData(const GameTimer& gt)
             XMMATRIX world = XMLoadFloat4x4(&instanceData[i].World);
             XMMATRIX texTransform = XMLoadFloat4x4(&instanceData[i].TexTransform);
 
-            XMMATRIX invWorld = XMMatrixInverse(&XMMatrixDeterminant(world), world);
+            auto detWorld = XMMatrixDeterminant(world);
+            XMMATRIX invWorld = XMMatrixInverse(&detWorld, world);
 
             // View space to the object's local space.
             XMMATRIX viewToLocal = XMMatrixMultiply(invView, invWorld);
@@ -456,9 +462,12 @@ void InstancingAndCullingApp::UpdateMainPassCB(const GameTimer& gt)
 	XMMATRIX proj = mCamera.GetProj();
 
 	XMMATRIX viewProj = XMMatrixMultiply(view, proj);
-	XMMATRIX invView = XMMatrixInverse(&XMMatrixDeterminant(view), view);
-	XMMATRIX invProj = XMMatrixInverse(&XMMatrixDeterminant(proj), proj);
-	XMMATRIX invViewProj = XMMatrixInverse(&XMMatrixDeterminant(viewProj), viewProj);
+	auto detView = XMMatrixDeterminant(view);
+	XMMATRIX invView = XMMatrixInverse(&detView, view);
+	auto detProj = XMMatrixDeterminant(proj);
+	XMMATRIX invProj = XMMatrixInverse(&detProj, proj);
+	auto detViewProj = XMMatrixDeterminant(viewProj);
+	XMMATRIX invViewProj = XMMatrixInverse(&detViewProj, viewProj);
 
 	XMStoreFloat4x4(&mMainPassCB.gView, XMMatrixTranspose(view));
 	XMStoreFloat4x4(&mMainPassCB.gInvView, XMMatrixTranspose(invView));
@@ -676,8 +685,10 @@ void InstancingAndCullingApp::DrawRenderItems(ID3D12GraphicsCommandList* cmdList
     {
         auto ri = ritems[i];
 
-        cmdList->IASetVertexBuffers(0, 1, &ri->Geo->VertexBufferView());
-        cmdList->IASetIndexBuffer(&ri->Geo->IndexBufferView());
+		auto vbv = ri->Geo->VertexBufferView();
+		auto ibv = ri->Geo->IndexBufferView();
+        cmdList->IASetVertexBuffers(0, 1, &vbv);
+        cmdList->IASetIndexBuffer(&ibv);
         cmdList->IASetPrimitiveTopology(ri->PrimitiveType);
 
 		cmdList->SetGraphicsRootConstantBufferView(GFX_ROOT_ARG_OBJECT_CBV, ri->MemHandleToObjectCB.GpuAddress());
@@ -694,8 +705,10 @@ void InstancingAndCullingApp::DrawInstancedRenderItems(ID3D12GraphicsCommandList
     {
         auto ri = ritems[i];
 
-        cmdList->IASetVertexBuffers(0, 1, &ri->Geo->VertexBufferView());
-        cmdList->IASetIndexBuffer(&ri->Geo->IndexBufferView());
+        auto vbv = ri->Geo->VertexBufferView();
+        auto ibv = ri->Geo->IndexBufferView();
+        cmdList->IASetVertexBuffers(0, 1, &vbv);
+        cmdList->IASetIndexBuffer(&ibv);
         cmdList->IASetPrimitiveTopology(ri->PrimitiveType);
 
         cmdList->SetGraphicsRootConstantBufferView(GFX_ROOT_ARG_OBJECT_CBV, 0);
