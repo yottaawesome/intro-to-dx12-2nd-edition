@@ -120,7 +120,7 @@ void PickingApp::Update(const GameTimer& gt)
     // If not, wait until the GPU has completed commands up to this fence point.
     if(mCurrFrameResource->Fence != 0 && mFence->GetCompletedValue() < mCurrFrameResource->Fence)
     {
-        HANDLE eventHandle = CreateEventEx(nullptr, false, false, EVENT_ALL_ACCESS);
+        HANDLE eventHandle = CreateEventEx(nullptr, nullptr, 0, EVENT_ALL_ACCESS);
         ThrowIfFailed(mFence->SetEventOnCompletion(mCurrFrameResource->Fence, eventHandle));
         WaitForSingleObject(eventHandle, INFINITE);
         CloseHandle(eventHandle);
@@ -178,15 +178,18 @@ void PickingApp::Draw(const GameTimer& gt)
     mCommandList->RSSetScissorRects(1, &mScissorRect);
 
     // Indicate a state transition on the resource usage.
-    mCommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
-                                  D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET));
+	auto transition = CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
+		D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+    mCommandList->ResourceBarrier(1, &transition);
 
     // Clear the back buffer and depth buffer.
     mCommandList->ClearRenderTargetView(CurrentBackBufferView(), Colors::LightSteelBlue, 0, nullptr);
     mCommandList->ClearDepthStencilView(DepthStencilView(), D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, nullptr);
 
     // Specify the buffers we are going to render to.
-    mCommandList->OMSetRenderTargets(1, &CurrentBackBufferView(), true, &DepthStencilView());
+	auto cbbv = CurrentBackBufferView();
+	auto dsv = DepthStencilView();
+    mCommandList->OMSetRenderTargets(1, &cbbv, true, &dsv);
 
     auto passCB = mCurrFrameResource->PassCB->Resource();
     mCommandList->SetGraphicsRootConstantBufferView(GFX_ROOT_ARG_PASS_CBV, passCB->GetGPUVirtualAddress());
@@ -207,8 +210,9 @@ void PickingApp::Draw(const GameTimer& gt)
     ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), mCommandList.Get());
 
     // Indicate a state transition on the resource usage.
-    mCommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
-                                  D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT));
+	transition = CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
+		D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+    mCommandList->ResourceBarrier(1, &transition);
 
     // Done recording commands.
     ThrowIfFailed(mCommandList->Close());
@@ -410,12 +414,16 @@ void PickingApp::UpdateMaterialBuffer(const GameTimer& gt)
 void PickingApp::UpdateMainPassCB(const GameTimer& gt)
 {
     XMMATRIX view = mCamera.GetView();
+	auto detView = XMMatrixDeterminant(view);
+    XMMATRIX invView = XMMatrixInverse(&detView, view);
+
     XMMATRIX proj = mCamera.GetProj();
+    auto detProj = XMMatrixDeterminant(proj);
+    XMMATRIX invProj = XMMatrixInverse(&detProj, proj);
 
     XMMATRIX viewProj = XMMatrixMultiply(view, proj);
-    XMMATRIX invView = XMMatrixInverse(&XMMatrixDeterminant(view), view);
-    XMMATRIX invProj = XMMatrixInverse(&XMMatrixDeterminant(proj), proj);
-    XMMATRIX invViewProj = XMMatrixInverse(&XMMatrixDeterminant(viewProj), viewProj);
+	auto detViewProj = XMMatrixDeterminant(viewProj);
+    XMMATRIX invViewProj = XMMatrixInverse(&detViewProj, viewProj);
 
     XMStoreFloat4x4(&mMainPassCB.gView, XMMatrixTranspose(view));
     XMStoreFloat4x4(&mMainPassCB.gInvView, XMMatrixTranspose(invView));
@@ -755,8 +763,10 @@ void PickingApp::DrawRenderItems(ID3D12GraphicsCommandList* cmdList, const std::
         if(ri->Visible == false)
             continue;
 
-        cmdList->IASetVertexBuffers(0, 1, &ri->Geo->VertexBufferView());
-        cmdList->IASetIndexBuffer(&ri->Geo->IndexBufferView());
+		auto vbv = ri->Geo->VertexBufferView();
+		auto ibv = ri->Geo->IndexBufferView();
+        cmdList->IASetVertexBuffers(0, 1, &vbv);
+        cmdList->IASetIndexBuffer(&ibv);
         cmdList->IASetPrimitiveTopology(ri->PrimitiveType);
 
         cmdList->SetGraphicsRootConstantBufferView(GFX_ROOT_ARG_OBJECT_CBV, ri->MemHandleToObjectCB.GpuAddress());
@@ -778,7 +788,8 @@ void PickingApp::Pick(int sx, int sy)
     XMVECTOR rayDirV = XMVectorSet(vx, vy, 1.0f, 0.0f);
 
     XMMATRIX V = mCamera.GetView();
-    XMMATRIX invView = XMMatrixInverse(&XMMatrixDeterminant(V), V);
+    auto detView = XMMatrixDeterminant(V);
+    XMMATRIX invView = XMMatrixInverse(&detView, V);
 
     // Assume nothing is picked to start, so the picked render-item is invisible.
     mPickedRitem->Visible = false;
@@ -796,7 +807,8 @@ void PickingApp::Pick(int sx, int sy)
             continue;
 
         XMMATRIX W = XMLoadFloat4x4(&ri->World);
-        XMMATRIX invWorld = XMMatrixInverse(&XMMatrixDeterminant(W), W);
+        auto detWorld = XMMatrixDeterminant(W);
+        XMMATRIX invWorld = XMMatrixInverse(&detWorld, W);
 
         // Tranform ray from view space to the local space of the mesh.
         XMMATRIX toLocal = XMMatrixMultiply(invView, invWorld);
