@@ -171,8 +171,9 @@ void Ssao::ComputeSsao(ID3D12GraphicsCommandList* cmdList, ID3D12PipelineState* 
 	// We compute the initial SSAO to AmbientMap0.
 
     // Change to RENDER_TARGET.
-    cmdList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(mAmbientMap0.Get(),
-        D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_RENDER_TARGET));
+    auto transition = CD3DX12_RESOURCE_BARRIER::Transition(mAmbientMap0.Get(),
+        D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_RENDER_TARGET);
+    cmdList->ResourceBarrier(1, &transition);
   
 	float clearValue[] = {1.0f, 1.0f, 1.0f, 1.0f};
     cmdList->ClearRenderTargetView(mhAmbientMap0CpuRtv, clearValue, 0, nullptr);
@@ -189,8 +190,9 @@ void Ssao::ComputeSsao(ID3D12GraphicsCommandList* cmdList, ID3D12PipelineState* 
 	cmdList->DrawInstanced(6, 1, 0, 0);
    
 	// Change back to GENERIC_READ so we can read the texture in a shader.
-    cmdList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(mAmbientMap0.Get(),
-        D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_GENERIC_READ));
+    transition = CD3DX12_RESOURCE_BARRIER::Transition(mAmbientMap0.Get(),
+        D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_GENERIC_READ);
+    cmdList->ResourceBarrier(1, &transition);
 }
  
 void Ssao::BlurAmbientMap(ID3D12GraphicsCommandList* cmdList, ID3D12PipelineState* ssaoBlurPso, int blurCount)
@@ -224,8 +226,9 @@ void Ssao::BlurAmbientMap(ID3D12GraphicsCommandList* cmdList, bool horzBlur)
         cmdList->SetGraphicsRootConstantBufferView(GFX_ROOT_ARG_OBJECT_CBV, mMemHandleSsaoVertCB.GpuAddress());
 	}
 
-    cmdList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(output,
-        D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_RENDER_TARGET));
+    auto transition = CD3DX12_RESOURCE_BARRIER::Transition(output,
+        D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_RENDER_TARGET);
+    cmdList->ResourceBarrier(1, &transition);
 
 	float clearValue[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     cmdList->ClearRenderTargetView(outputRtv, clearValue, 0, nullptr);
@@ -238,8 +241,9 @@ void Ssao::BlurAmbientMap(ID3D12GraphicsCommandList* cmdList, bool horzBlur)
     cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	cmdList->DrawInstanced(6, 1, 0, 0);
    
-    cmdList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(output,
-        D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_GENERIC_READ));
+    transition = CD3DX12_RESOURCE_BARRIER::Transition(output,
+        D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_GENERIC_READ);
+    cmdList->ResourceBarrier(1, &transition);
 }
  
 void Ssao::UpdateSize(UINT width, UINT height)
@@ -332,8 +336,9 @@ void Ssao::BuildResources()
 
     float normalClearColor[] = { 0.0f, 0.0f, 1.0f, 0.0f };
     CD3DX12_CLEAR_VALUE optClear(SceneNormalMapFormat, normalClearColor);
+	auto heapProps = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
     ThrowIfFailed(md3dDevice->CreateCommittedResource(
-        &CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT),
+        &heapProps,
         D3D12_HEAP_FLAG_NONE,
         &texDesc,
         D3D12_RESOURCE_STATE_GENERIC_READ,
@@ -349,7 +354,7 @@ void Ssao::BuildResources()
     optClear = CD3DX12_CLEAR_VALUE(SsaoAmbientMapFormat, ambientClearColor);
 
     ThrowIfFailed(md3dDevice->CreateCommittedResource(
-        &CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT),
+        &heapProps,
         D3D12_HEAP_FLAG_NONE,
         &texDesc,
         D3D12_RESOURCE_STATE_GENERIC_READ,
@@ -357,7 +362,7 @@ void Ssao::BuildResources()
         IID_PPV_ARGS(&mAmbientMap0)));
 
     ThrowIfFailed(md3dDevice->CreateCommittedResource(
-        &CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT),
+        &heapProps,
         D3D12_HEAP_FLAG_NONE,
         &texDesc,
         D3D12_RESOURCE_STATE_GENERIC_READ,
