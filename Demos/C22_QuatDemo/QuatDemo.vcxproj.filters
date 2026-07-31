@@ -36,7 +36,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="..\..\External\DirectXTK12\Inc\SimpleMath.inl">
       <Filter>DirectXTK12\Inc</Filter>
     </None>
