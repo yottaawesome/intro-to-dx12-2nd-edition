@@ -21,12 +21,12 @@ class ProceduralRayTracer
 
 public:
 
-	static constexpr wchar_t* HitGroupName = L"HitGroup0";
-	static constexpr wchar_t* RaygenShaderName = L"RaygenShader";
-	static constexpr wchar_t* ClosestHitShaderName = L"ClosestHit";
-	static constexpr wchar_t* ColorMissShaderName = L"Color_MissShader";
-	static constexpr wchar_t* ShadowMissShaderName = L"Shadow_MissShader";
-	static constexpr wchar_t* IntersectionShaderName = L"PrimitiveIntersectionShader";
+	static constexpr const wchar_t* HitGroupName = L"HitGroup0";
+	static constexpr const wchar_t* RaygenShaderName = L"RaygenShader";
+	static constexpr const wchar_t* ClosestHitShaderName = L"ClosestHit";
+	static constexpr const wchar_t* ColorMissShaderName = L"Color_MissShader";
+	static constexpr const wchar_t* ShadowMissShaderName = L"Shadow_MissShader";
+	static constexpr const wchar_t* IntersectionShaderName = L"PrimitiveIntersectionShader";
 
 	ProceduralRayTracer(ID3D12Device5* device, 
 						ID3D12GraphicsCommandList6* cmdList,

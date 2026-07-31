@@ -116,7 +116,8 @@ void ProceduralRayTracer::ExecuteBuildAccelerationStructureCommands(ID3D12Comman
 
     AccelerationStructureBuffers primitiveBlas = BuildPrimitiveBlas();
     
-    mdxrCmdList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::UAV(primitiveBlas.accelerationStructure.Get()));
+	auto uav = CD3DX12_RESOURCE_BARRIER::UAV(primitiveBlas.accelerationStructure.Get());
+    mdxrCmdList->ResourceBarrier(1, &uav);
 
     AccelerationStructureBuffers tlas = BuildTlas(primitiveBlas.accelerationStructure->GetGPUVirtualAddress());
 
@@ -174,8 +175,9 @@ void ProceduralRayTracer::BuildOutputTexture()
     texDesc.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN;
     texDesc.Flags = D3D12_RESOURCE_FLAG_ALLOW_UNORDERED_ACCESS;
 
+	auto heapProps = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
     ThrowIfFailed(mdxrDevice->CreateCommittedResource(
-        &CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT),
+        &heapProps,
         D3D12_HEAP_FLAG_NONE,
         &texDesc,
         D3D12_RESOURCE_STATE_UNORDERED_ACCESS,

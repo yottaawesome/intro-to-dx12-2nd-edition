@@ -9,10 +9,12 @@ FrameResource::FrameResource(ID3D12Device* device, UINT passCount, UINT objectCo
     PassCB = std::make_unique<UploadBuffer<PerPassCB>>(device, passCount, true);
 	MaterialBuffer = std::make_unique<UploadBuffer<MaterialData>>(device, materialCount, false);
 
+	auto heapProps = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_READBACK);
+	auto bufferSize = CD3DX12_RESOURCE_DESC::Buffer(sizeof(uint32_t));
 	ThrowIfFailed(device->CreateCommittedResource(
-		&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_READBACK),
+		&heapProps,
 		D3D12_HEAP_FLAG_NONE,
-		&CD3DX12_RESOURCE_DESC::Buffer(sizeof(uint32_t)),
+		&bufferSize,
 		D3D12_RESOURCE_STATE_COPY_DEST,
 		nullptr,
 		IID_PPV_ARGS(&RainParticleCountReadbackBuffer)));
