@@ -101,7 +101,8 @@ void HybridRayTracer::ExecuteBuildAccelerationStructureCommands(ID3D12CommandQue
     std::unordered_map<std::string, AccelerationStructureBuffers> modelBlases = BuildBlases();
     for(const auto& [name, blas] : modelBlases)
     {
-       mdxrCmdList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::UAV(blas.accelerationStructure.Get()));
+	    auto barrier = CD3DX12_RESOURCE_BARRIER::UAV(blas.accelerationStructure.Get());
+        mdxrCmdList->ResourceBarrier(1, &barrier);
     }
 
     AccelerationStructureBuffers tlas = BuildTlas(modelBlases);
@@ -163,8 +164,9 @@ void HybridRayTracer::BuildOutputTextures()
     texDesc.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN;
     texDesc.Flags = D3D12_RESOURCE_FLAG_ALLOW_UNORDERED_ACCESS;
 
+	auto heapProps = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
     ThrowIfFailed(mdxrDevice->CreateCommittedResource(
-        &CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT),
+        &heapProps,
         D3D12_HEAP_FLAG_NONE,
         &texDesc,
         D3D12_RESOURCE_STATE_UNORDERED_ACCESS,

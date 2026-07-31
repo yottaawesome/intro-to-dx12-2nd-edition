@@ -228,8 +228,9 @@ void HybridRayTracingApp::Draw(const GameTimer& gt)
     mCommandList->RSSetScissorRects(1, &mScissorRect);
 
     // Indicate a state transition on the resource usage.
-	mCommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
-		D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET));
+    auto transition = CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
+        D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+	mCommandList->ResourceBarrier(1, &transition);
 
     // Clear the back buffer and depth buffer.
     mCommandList->ClearRenderTargetView(CurrentBackBufferView(), Colors::LightSteelBlue, 0, nullptr);
@@ -238,7 +239,9 @@ void HybridRayTracingApp::Draw(const GameTimer& gt)
     // SO DO NOT CLEAR DEPTH.
 
     // Specify the buffers we are going to render to.
-    mCommandList->OMSetRenderTargets(1, &CurrentBackBufferView(), true, &DepthStencilView());
+	auto cbbv = CurrentBackBufferView();
+	auto dsv = DepthStencilView();
+    mCommandList->OMSetRenderTargets(1, &cbbv, true, &dsv);
 
 	mCommandList->SetGraphicsRootConstantBufferView(GFX_ROOT_ARG_PASS_CBV, passCB->GetGPUVirtualAddress());
 
@@ -255,8 +258,9 @@ void HybridRayTracingApp::Draw(const GameTimer& gt)
     ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), mCommandList.Get());
 
     // Indicate a state transition on the resource usage.
-	mCommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
-		D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT));
+	transition = CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
+		D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+	mCommandList->ResourceBarrier(1, &transition);
 
     // Done recording commands.
     ThrowIfFailed(mCommandList->Close());
@@ -492,12 +496,16 @@ void HybridRayTracingApp::UpdateShadowTransform(const GameTimer& gt)
 void HybridRayTracingApp::UpdateMainPassCB(const GameTimer& gt)
 {
 	XMMATRIX view = mCamera.GetView();
+	auto detView = XMMatrixDeterminant(view);
+    XMMATRIX invView = XMMatrixInverse(&detView, view);
+
 	XMMATRIX proj = mCamera.GetProj();
+    auto detProj = XMMatrixDeterminant(proj);
+    XMMATRIX invProj = XMMatrixInverse(&detProj, proj);
 
 	XMMATRIX viewProj = XMMatrixMultiply(view, proj);
-	XMMATRIX invView = XMMatrixInverse(&XMMatrixDeterminant(view), view);
-	XMMATRIX invProj = XMMatrixInverse(&XMMatrixDeterminant(proj), proj);
-	XMMATRIX invViewProj = XMMatrixInverse(&XMMatrixDeterminant(viewProj), viewProj);
+    auto detViewProj = XMMatrixDeterminant(viewProj);
+	XMMATRIX invViewProj = XMMatrixInverse(&detViewProj, viewProj);
 
     // Transform NDC space [-1,+1]^2 to texture space [0,1]^2
     XMMATRIX T(
@@ -955,9 +963,10 @@ void HybridRayTracingApp::DrawRenderItems(ID3D12GraphicsCommandList* cmdList, co
     for(size_t i = 0; i < ritems.size(); ++i)
     {
         auto ri = ritems[i];
-
-        cmdList->IASetVertexBuffers(0, 1, &ri->Geo->VertexBufferView());
-        cmdList->IASetIndexBuffer(&ri->Geo->IndexBufferView());
+		auto vbv = ri->Geo->VertexBufferView();
+		auto ibv = ri->Geo->IndexBufferView();
+        cmdList->IASetVertexBuffers(0, 1, &vbv);
+        cmdList->IASetIndexBuffer(&ibv);
         cmdList->IASetPrimitiveTopology(ri->PrimitiveType);
 
 		cmdList->SetGraphicsRootConstantBufferView(GFX_ROOT_ARG_OBJECT_CBV, ri->MemHandleToObjectCB.GpuAddress());
@@ -977,8 +986,9 @@ void HybridRayTracingApp::DrawNormalsAndDepth()
     mCommandList->RSSetScissorRects(1, &mScissorRect);
  
     // Change to RENDER_TARGET.
-    mCommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(normalMap,
-                                  D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_RENDER_TARGET));
+	auto transition = CD3DX12_RESOURCE_BARRIER::Transition(normalMap,
+		D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_RENDER_TARGET);
+    mCommandList->ResourceBarrier(1, &transition);
 
     // Clear the screen normal map and depth buffer.
     float clearValue[] = { 0.0f, 0.0f, 1.0f, 0.0f };
@@ -986,7 +996,8 @@ void HybridRayTracingApp::DrawNormalsAndDepth()
     mCommandList->ClearDepthStencilView(DepthStencilView(), D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, nullptr);
 
     // Specify the buffers we are going to render to.
-    mCommandList->OMSetRenderTargets(1, &normalMapRtv, true, &DepthStencilView());
+	auto dsv = DepthStencilView();
+    mCommandList->OMSetRenderTargets(1, &normalMapRtv, true, &dsv);
 
     // Bind the constant buffer for this pass.
     auto passCB = mCurrFrameResource->PassCB->Resource();
@@ -997,7 +1008,8 @@ void HybridRayTracingApp::DrawNormalsAndDepth()
     DrawRenderItems(mCommandList.Get(), mRitemLayer[(int)RenderLayer::Opaque]);
 
     // Change back to GENERIC_READ so we can read the texture in a shader.
-    mCommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(normalMap,
-                                  D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_GENERIC_READ));
+	transition = CD3DX12_RESOURCE_BARRIER::Transition(normalMap,
+                                  D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_GENERIC_READ);
+    mCommandList->ResourceBarrier(1, &transition);
 }
 
