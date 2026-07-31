@@ -525,8 +525,5 @@
     <CopyFileToFolders Include="..\..\Shaders\TessGeo.hlsl">
       <Filter>Shaders</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="packages.config">
-      <Filter>Shaders</Filter>
-    </CopyFileToFolders>
   </ItemGroup>
 </Project>
